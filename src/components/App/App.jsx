@@ -1,9 +1,11 @@
 import axios from 'axios';
 import './App.css';
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
-
+//Components
+import CustomerForm from '../CustomerForm/CustomerForm';
 
 function App() {
   
@@ -31,15 +33,24 @@ function App() {
   
 
   return (
-    <div className='App'>
-      <header className='App-header'>
-        <h1 className='App-title'>Prime Pizza</h1>
-      </header>
-  
-      <img src='images/pizza_photo.png' />
-      <p>Pizza is great.</p>
-  
+    <Router>
+    
+    <div className='container'>
+    
+      <Route path="/">
+        {/* <Header />
+        <PizzaList /> */}
+      </Route>
+      <Route path="/customerForm">
+        {/* <Header /> */}
+        <CustomerForm />
+      </Route>
+      <Route path="/checkout">
+        {/* <Header />
+        <Checkout /> */}
+      </Route>
     </div>
+    </Router>
   );
   }
 
