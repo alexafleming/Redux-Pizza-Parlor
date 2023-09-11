@@ -1,8 +1,34 @@
-import React from 'react';
 import axios from 'axios';
 import './App.css';
+import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+
+
 
 function App() {
+  
+  const [pizzas, setPizzas] = useState([]);
+  const dispatch = useDispatch();
+
+  useEffect(() => { 
+    fetchPizzaOptions();
+  }, [])
+
+  const fetchPizzaOptions = () => {
+    axios.get('/api/pizza')
+    .then( response => {
+      dispatch({ type: 'SET_PIZZAS', payload: response.data})
+    })
+    .catch( error => {
+      console.log(error);
+      alert('Could not get pizzas at this time.')
+    })
+  }
+  
+
+    
+
+  
 
   return (
     <div className='App'>
@@ -15,6 +41,6 @@ function App() {
   
     </div>
   );
-}
+  }
 
 export default App;
