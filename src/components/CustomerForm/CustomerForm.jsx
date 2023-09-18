@@ -12,7 +12,7 @@ const CustomerForm = () => {
     }
 
     const [customerInfo, setCustomerInfo] = useState(initialState);
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
     const onchange = (e) => {
         setCustomerInfo({
