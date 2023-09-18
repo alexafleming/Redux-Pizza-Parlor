@@ -12,6 +12,14 @@ function App() {
   const [pizzas, setPizzas] = useState([]);
   const dispatch = useDispatch();
 
+  return (
+    <div className='App'>
+      <header className='App-header'>
+        <h1 className='App-title'>Prime Pizza</h1>
+      </header>
+  <CustomerForm />
+      <img src='images/pizza_photo.png' />
+      <p>Pizza is great.</p>
   useEffect(() => { 
     fetchPizzaOptions();
   }, [])
@@ -27,31 +35,5 @@ function App() {
     })
   }
   
-
-    
-
-  
-
-  return (
-    <Router>
-    
-    <div className='container'>
-    
-      <Route path="/">
-        {/* <Header />
-        <PizzaList /> */}
-      </Route>
-      <Route path="/customerForm">
-        {/* <Header /> */}
-        <CustomerForm />
-      </Route>
-      <Route path="/checkout">
-        {/* <Header />
-        <Checkout /> */}
-      </Route>
-    </div>
-    </Router>
-  );
-  }
 
 export default App;

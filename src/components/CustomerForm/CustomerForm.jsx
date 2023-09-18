@@ -1,36 +1,53 @@
-import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux'
-import { useHistory } from 'react-router-dom';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux'
 
-function customerForm() {
+const CustomerForm = () => {
+    const initialState = {
+        name: '',
+        address: '',
+        city: '',
+        zip: '',
+        phone: '',
+        pickup: false
+    }
 
-    const history = useHistory();
+    const [customerInfo, setCustomerInfo] = useState(initialState);
+    // const dispatch = useDispatch();
 
+    const onchange = (e) => {
+        setCustomerInfo({
+            ...customerInfo,
+            [e.target.name]: e.target.name === 'pickup' ? e.target.checked : e.target.value    
+        })
+    }
 
-    //set up dispatch
-    const dispatch = useDispatch();
+    const onSubmit = (e) => {
+        e.preventDefault()
+        dispatch({type: 'SET_CUSTOMER_DATA', customerInfo})
+        setCustomerInfo(initialState)
+    }
+     
+return (
 
-    //set up useSelector
-    const currentTotal = useSelector(store => store.currentTotal)
+<div>
+    <form className='' onSubmit={onSubmit}>
+        <label>Name</label>
+        <input type='text' name='name' value={customerInfo.name} onChange = {onchange}></input>
+        <label>Address</label>
+        <input type='text' name='address' value={customerInfo.address} onChange = {onchange}></input>
+        <label>City</label>
+        <input type='text' name='city' value={customerInfo.city} onChange = {onchange}></input>
+        <label>Zip</label>
+        <input type='text' name='zip' value={customerInfo.zip} onChange = {onchange}></input>
+        <label>Phone</label>
+        <input type='text' name='phone' value={customerInfo.phone} onChange = {onchange}></input>
+        <label>Pickup</label>
+        <input type='checkbox' name='pickup' value={customerInfo.pickup}onChange = {onchange}></input>
+        <button>Submit</button>
+    </form>
 
-    //set up useState
-    const [customerName, setCustomerName] = useState('');
-    const [streetAddress, setStreetAddress] = useState('');
-    const [city, setCity] = useState('');
-    const [zip, setZip] = useState('');
-    const [type, setType] = useState('');
-
-
-
-
-
-
-
-
-
+</div>
+)
 }
 
-
-
-
-export default customerForm;
+export default CustomerForm;
