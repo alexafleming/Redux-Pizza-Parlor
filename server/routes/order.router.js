@@ -13,6 +13,20 @@ router.get('/', (req, res) => {
     });
 })
 
+router.get('/lastOrder', (req, res) => {
+    let queryString = `SELECT * FROM "orders"
+                ORDER BY "id" DESC
+                LIMIT 1`
+    pool.query(queryString)
+        .then((result) => {
+            res.send(result.rows);
+        })
+        .catch((error) => {
+            console.log('Error GET /api/order', error);
+            res.sendStatus(500);  
+        });
+})
+
 // POST a new order
 router.post('/', async (req, res) => {
     const client = await pool.connect();
