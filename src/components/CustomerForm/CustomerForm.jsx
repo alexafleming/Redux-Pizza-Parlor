@@ -12,7 +12,7 @@ const CustomerForm = () => {
     }
 
     const [customerInfo, setCustomerInfo] = useState(initialState);
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
     const onchange = (e) => {
         setCustomerInfo({
@@ -23,7 +23,8 @@ const CustomerForm = () => {
 
     const onSubmit = (e) => {
         e.preventDefault()
-        dispatch({type: 'SET_CUSTOMER_DATA', customerInfo})
+        console.log(customerInfo);
+        dispatch({type: 'SET_CUSTOMER_DATA', payload: customerInfo})
         setCustomerInfo(initialState)
     }
      
