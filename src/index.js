@@ -40,6 +40,9 @@ const currentCustomer = (state = [{}], action) => {
     if (action.type === 'SET_CUSTOMER_DATA') {
         return action.payload;
     }
+    if (action.type === 'SET_NAME') {
+        return [{...state, name: action.payload}] //From office hours
+    }
     return state;
 }
 
