@@ -36,11 +36,12 @@ const orders = (state = [], action) => {
     return state;
 }
 
-const currentCustomer = (state = [{}], action) => {
+const currentCustomer = (state = [], action) => {
+    console.log('Action payload for customer', action.payload);
     if (action.type === 'SET_CUSTOMER_DATA') {
         return action.payload;
     }
-    if (action.type === 'SET_NAME') {
+    else if (action.type === 'SET_NAME') {
         return [{...state, name: action.payload}] //From office hours
     }
     return state;
