@@ -12,18 +12,6 @@ function App() {
   const [pizzas, setPizzas] = useState([]);
   const dispatch = useDispatch();
 
-  return (
-    <div className='App'>
-      <header className='App-header'>
-        <h1 className='App-title'>Prime Pizza</h1>
-      </header>
-  <CustomerForm />
-      <img src='images/pizza_photo.png' />
-      <p>Pizza is great.</p>
-  useEffect(() => { 
-    fetchPizzaOptions();
-  }, [])
-
   const fetchPizzaOptions = () => {
     axios.get('/api/pizza')
     .then( response => {
@@ -33,7 +21,23 @@ function App() {
       console.log(error);
       alert('Could not get pizzas at this time.')
     })
-  }
-  
+}
+
+useEffect(() => { 
+  fetchPizzaOptions();
+}, []);
+
+  return (
+    <div className='App'>
+      <header className='App-header'>
+        <h1 className='App-title'>Prime Pizza</h1>
+      </header>
+  <CustomerForm />
+      <img src='images/pizza_photo.png' />
+      <p>Pizza is great.</p>
+    </div>
+)
+
+  }  
 
 export default App;
